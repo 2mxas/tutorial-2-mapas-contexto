@@ -1,6 +1,10 @@
 # Use the lighter Java 17 image to reduce disk usage when building
 FROM mcr.microsoft.com/devcontainers/java:1-17-bullseye
 
+# Remove the obsolete Yarn repository inherited from the base image
+RUN rm -f /etc/apt/sources.list.d/yarn.list \
+    /etc/apt/sources.list.d/yarnpkg.list
+
 # Install Graphviz, curl and Node.js for JHipster
 RUN apt-get update \
     && apt-get install -y graphviz curl \
