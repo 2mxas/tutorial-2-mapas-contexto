@@ -3,6 +3,9 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "containerEnv": {
+    "JAVA_HOME": "/usr/lib/jvm/msopenjdk-current"
+  },
   "postCreateCommand": "./gradlew clean build",
   "customizations": {
     "vscode": {
@@ -11,7 +14,11 @@
         "contextmapper.context-mapper-vscode-extension",
         "vscjava.vscode-java-pack",
         "asciidoctor.asciidoctor-vscode"
-      ]
+      ],
+      "settings": {
+        "java.jdt.ls.java.home": "/usr/lib/jvm/msopenjdk-current",
+        "java.import.gradle.java.home": "/usr/lib/jvm/msopenjdk-current"
+      }
     }
   }
 }
