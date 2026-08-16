@@ -5,6 +5,11 @@ FROM mcr.microsoft.com/devcontainers/java:1-17-bullseye
 RUN rm -f /etc/apt/sources.list.d/yarn.list \
     /etc/apt/sources.list.d/yarnpkg.list
 
+# Fix SDKMAN's "current" symlink for Java
+RUN bash -c "source /usr/local/sdkman/bin/sdkman-init.sh \
+    && JAVA_VERSION=\$(ls /usr/local/sdkman/candidates/java | grep -v current | head -1) \
+    && sdk default java \$JAVA_VERSION"
+
 # Install Graphviz, curl and Node.js for JHipster
 RUN apt-get update \
     && apt-get install -y graphviz curl \
